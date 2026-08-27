@@ -1,0 +1,3728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BuildCalc India – Free Home & Construction Calculators</title>
+
+<meta name="description"
+content="BuildCalc India offers free construction calculators for house construction cost, cement, concrete, bricks, blocks, sand, steel, plaster, paint, tiles, flooring, area, volume and water tank capacity.">
+
+<meta name="keywords"
+content="construction calculator India, house construction cost calculator, cement calculator, concrete calculator, brick calculator, sand calculator, steel calculator, TMT calculator, plaster calculator, paint calculator, tile calculator, flooring calculator, area calculator, volume calculator, water tank calculator">
+
+<meta name="robots" content="index, follow">
+
+<meta name="theme-color" content="#f97316">
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --orange:#f97316;
+    --orange-dark:#ea580c;
+    --orange-soft:#fff7ed;
+    --dark:#111827;
+    --dark2:#1f2937;
+    --text:#374151;
+    --muted:#6b7280;
+    --bg:#f4f6f8;
+    --white:#fff;
+    --border:#e5e7eb;
+    --green:#16a34a;
+    --red:#dc2626;
+    --shadow:0 8px 28px rgba(15,23,42,.08);
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.55;
+}
+
+button,input,select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.header{
+    background:
+    linear-gradient(135deg,#111827,#1f2937 60%,#374151);
+
+    color:white;
+}
+
+.header-inner{
+    width:min(1250px,calc(100% - 28px));
+    margin:auto;
+    padding:22px 0 60px;
+}
+
+.nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-icon{
+    width:48px;
+    height:48px;
+    border-radius:13px;
+    background:var(--orange);
+    display:grid;
+    place-items:center;
+    font-size:25px;
+}
+
+.logo h1{
+    font-size:21px;
+    line-height:1.15;
+}
+
+.logo p{
+    color:#cbd5e1;
+    font-size:11px;
+    margin-top:3px;
+}
+
+.nav-badge{
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.08);
+    padding:8px 13px;
+    border-radius:999px;
+    font-size:12px;
+}
+
+.hero{
+    max-width:850px;
+    margin:55px auto 0;
+    text-align:center;
+}
+
+.hero h2{
+    font-size:clamp(31px,5vw,54px);
+    line-height:1.08;
+    letter-spacing:-1px;
+}
+
+.hero h2 span{
+    color:#fb923c;
+}
+
+.hero p{
+    color:#cbd5e1;
+    margin:17px auto 0;
+    max-width:700px;
+    font-size:16px;
+}
+
+.hero-buttons{
+    margin-top:24px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.hero-btn{
+    border:0;
+    padding:11px 18px;
+    border-radius:10px;
+    font-weight:700;
+    background:var(--orange);
+    color:white;
+}
+
+.hero-btn.secondary{
+    background:white;
+    color:var(--dark);
+}
+
+/* ================================
+   LAYOUT
+================================ */
+
+.container{
+    width:min(1250px,calc(100% - 28px));
+    margin:auto;
+}
+
+.main-content{
+    margin-top:-30px;
+    position:relative;
+}
+
+.search-box{
+    background:white;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    border-radius:15px;
+    padding:12px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.search-box input{
+    border:0;
+    outline:0;
+    flex:1;
+    font-size:15px;
+}
+
+.search-icon{
+    font-size:20px;
+}
+
+/* ================================
+   CATEGORY FILTER
+================================ */
+
+.categories{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding-bottom:8px;
+    margin-bottom:18px;
+}
+
+.category{
+    border:1px solid var(--border);
+    background:white;
+    color:var(--text);
+    padding:9px 14px;
+    border-radius:999px;
+    white-space:nowrap;
+    font-size:12px;
+    font-weight:700;
+}
+
+.category.active{
+    background:var(--orange);
+    color:white;
+    border-color:var(--orange);
+}
+
+/* ================================
+   CALCULATOR GRID
+================================ */
+
+.calculator-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+}
+
+.card.hidden{
+    display:none;
+}
+
+.card-head{
+    background:
+    linear-gradient(135deg,#f97316,#fb923c);
+
+    color:white;
+    padding:15px 17px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.card-title{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.card-icon{
+    width:39px;
+    height:39px;
+    border-radius:10px;
+    background:rgba(255,255,255,.18);
+    display:grid;
+    place-items:center;
+    font-size:20px;
+}
+
+.card-head h3{
+    font-size:15px;
+}
+
+.card-head small{
+    display:block;
+    font-size:10px;
+    opacity:.85;
+}
+
+.card-number{
+    font-size:12px;
+    opacity:.8;
+}
+
+.card-body{
+    padding:18px;
+}
+
+.field{
+    margin-bottom:13px;
+}
+
+.field label{
+    display:block;
+    color:var(--dark);
+    font-weight:700;
+    font-size:12px;
+    margin-bottom:6px;
+}
+
+.input-row{
+    display:grid;
+    grid-template-columns:1fr 100px;
+    gap:7px;
+}
+
+input,select{
+    width:100%;
+    border:1px solid var(--border);
+    background:white;
+    color:var(--dark);
+    border-radius:9px;
+    padding:10px 11px;
+    outline:none;
+}
+
+input:focus,select:focus{
+    border-color:var(--orange);
+    box-shadow:0 0 0 3px rgba(249,115,22,.10);
+}
+
+.btn{
+    width:100%;
+    border:0;
+    border-radius:9px;
+    padding:11px 14px;
+    background:var(--orange);
+    color:white;
+    font-weight:800;
+    transition:.2s;
+}
+
+.btn:hover{
+    background:var(--orange-dark);
+    transform:translateY(-1px);
+}
+
+.btn-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+
+.btn.gray{
+    background:#f3f4f6;
+    color:var(--dark);
+}
+
+.result{
+    display:none;
+    margin-top:14px;
+    background:var(--orange-soft);
+    border:1px solid #fed7aa;
+    border-radius:11px;
+    padding:13px;
+}
+
+.result.show{
+    display:block;
+}
+
+.result-title{
+    color:var(--muted);
+    font-size:11px;
+    font-weight:700;
+}
+
+.big-result{
+    color:var(--orange-dark);
+    font-size:24px;
+    font-weight:900;
+    margin:1px 0 8px;
+}
+
+.result-table{
+    display:grid;
+    gap:6px;
+}
+
+.result-line{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    font-size:12px;
+    padding-bottom:5px;
+    border-bottom:1px dashed #fed7aa;
+}
+
+.result-line:last-child{
+    border-bottom:0;
+}
+
+.result-line strong{
+    color:var(--dark);
+}
+
+.note{
+    margin-top:8px;
+    color:var(--muted);
+    font-size:10px;
+}
+
+/* ================================
+   HOUSE COST SPECIAL
+================================ */
+
+.house-card{
+    grid-column:span 2;
+}
+
+.house-summary{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-top:12px;
+}
+
+.summary-box{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:9px;
+    padding:10px;
+}
+
+.summary-box span{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+}
+
+.summary-box strong{
+    display:block;
+    color:var(--dark);
+    font-size:15px;
+    margin-top:2px;
+}
+
+.cost-breakdown{
+    margin-top:13px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.cost-row{
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr;
+    padding:8px 10px;
+    border-bottom:1px solid var(--border);
+    font-size:11px;
+}
+
+.cost-row:last-child{
+    border-bottom:0;
+}
+
+.cost-row.head{
+    font-weight:800;
+    background:#f9fafb;
+}
+
+/* ================================
+   SECTION
+================================ */
+
+.section{
+    margin-top:55px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:23px;
+}
+
+.section-title h2{
+    color:var(--dark);
+    font-size:29px;
+}
+
+.section-title p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:4px;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+.feature{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:17px;
+}
+
+.feature-icon{
+    font-size:24px;
+    margin-bottom:7px;
+}
+
+.feature h3{
+    font-size:14px;
+    color:var(--dark);
+    margin-bottom:5px;
+}
+
+.feature p{
+    font-size:12px;
+    color:var(--muted);
+}
+
+/* ================================
+   SEO CONTENT
+================================ */
+
+.guide{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:24px;
+}
+
+.guide h2{
+    color:var(--dark);
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.guide h3{
+    color:var(--dark);
+    font-size:17px;
+    margin:20px 0 6px;
+}
+
+.guide p{
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.guide ul{
+    padding-left:20px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* ================================
+   FAQ
+================================ */
+
+.faq-wrap{
+    max-width:850px;
+    margin:auto;
+}
+
+.faq{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:11px;
+    margin-bottom:8px;
+    overflow:hidden;
+}
+
+.faq-question{
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-weight:800;
+    color:var(--dark);
+    cursor:pointer;
+    font-size:13px;
+}
+
+.faq-answer{
+    display:none;
+    padding:0 15px 15px;
+    color:var(--muted);
+    font-size:12px;
+}
+
+.faq.active .faq-answer{
+    display:block;
+}
+
+.faq-arrow{
+    transition:.2s;
+}
+
+.faq.active .faq-arrow{
+    transform:rotate(180deg);
+}
+
+/* ================================
+   DISCLAIMER
+================================ */
+
+.disclaimer{
+    margin-top:35px;
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    color:#7c2d12;
+    border-radius:13px;
+    padding:17px;
+    font-size:12px;
+}
+
+.disclaimer strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+/* ================================
+   FOOTER
+================================ */
+
+footer{
+    margin-top:55px;
+    background:#111827;
+    color:#cbd5e1;
+    padding:35px 20px;
+    text-align:center;
+}
+
+footer h3{
+    color:white;
+    font-size:18px;
+}
+
+footer p{
+    font-size:11px;
+    margin-top:5px;
+}
+
+.footer-links{
+    margin-top:13px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.footer-links a{
+    color:#cbd5e1;
+    text-decoration:none;
+    font-size:11px;
+}
+
+/* ================================
+   TOAST
+================================ */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:20px;
+    transform:translate(-50%,120px);
+    background:#111827;
+    color:white;
+    padding:11px 16px;
+    border-radius:999px;
+    font-size:12px;
+    opacity:0;
+    transition:.25s;
+    z-index:9999;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media(max-width:1050px){
+
+    .calculator-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .house-card{
+        grid-column:span 2;
+    }
+
+    .feature-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:680px){
+
+    .header-inner{
+        padding-bottom:50px;
+    }
+
+    .nav-badge{
+        display:none;
+    }
+
+    .hero{
+        margin-top:38px;
+    }
+
+    .hero h2{
+        font-size:33px;
+    }
+
+    .hero p{
+        font-size:13px;
+    }
+
+    .calculator-grid{
+        grid-template-columns:1fr;
+    }
+
+    .house-card{
+        grid-column:span 1;
+    }
+
+    .house-summary{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .feature-grid{
+        grid-template-columns:1fr;
+    }
+
+    .input-row{
+        grid-template-columns:1fr 90px;
+    }
+
+    .search-box{
+        margin-top:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<header class="header">
+
+<div class="header-inner">
+
+    <div class="nav">
+
+        <div class="logo">
+
+            <div class="logo-icon">🏗️</div>
+
+            <div>
+                <h1>BuildCalc India</h1>
+                <p>Calculate. Plan. Build Smarter.</p>
+            </div>
+
+        </div>
+
+        <div class="nav-badge">
+            ✓ Free Construction Tools
+        </div>
+
+    </div>
+
+
+    <div class="hero">
+
+        <h2>
+            India's Simple
+            <span>Construction Calculator</span>
+        </h2>
+
+        <p>
+            Calculate house construction cost, cement, concrete,
+            bricks, sand, steel, paint, tiles, plaster, flooring,
+            area, volume and more — all in one place.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                class="hero-btn"
+                onclick="document.getElementById('calculators').scrollIntoView()"
+            >
+                Explore Calculators
+            </button>
+
+            <button
+                class="hero-btn secondary"
+                onclick="document.getElementById('houseCost').scrollIntoView()"
+            >
+                House Cost Calculator
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</header>
+
+
+<!-- ==================================================
+     MAIN
+================================================== -->
+
+<main class="container main-content">
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+    <span class="search-icon">🔎</span>
+
+    <input
+        id="calculatorSearch"
+        type="search"
+        placeholder="Search calculator... e.g. cement, brick, paint, house cost"
+        oninput="searchCalculators()"
+    >
+
+</div>
+
+
+<!-- CATEGORIES -->
+
+<div class="categories">
+
+    <button
+        class="category active"
+        onclick="filterCategory('all',this)"
+    >
+        All
+    </button>
+
+    <button
+        class="category"
+        onclick="filterCategory('cost',this)"
+    >
+        💰 Cost
+    </button>
+
+    <button
+        class="category"
+        onclick="filterCategory('material',this)"
+    >
+        🧱 Materials
+    </button>
+
+    <button
+        class="category"
+        onclick="filterCategory('finishing',this)"
+    >
+        🎨 Finishing
+    </button>
+
+    <button
+        class="category"
+        onclick="filterCategory('measurement',this)"
+    >
+        📐 Measurement
+    </button>
+
+    <button
+        class="category"
+        onclick="filterCategory('utility',this)"
+    >
+        🔧 Utility
+    </button>
+
+</div>
+
+
+<!-- ==================================================
+     CALCULATORS
+================================================== -->
+
+<section id="calculators">
+
+<div class="calculator-grid">
+
+
+<!-- ==================================================
+     01 HOUSE COST
+================================================== -->
+
+<article
+class="card house-card"
+data-category="cost"
+data-name="house construction cost calculator construction cost home building cost"
+id="houseCost"
+>
+
+<div class="card-head">
+
+    <div class="card-title">
+
+        <div class="card-icon">🏠</div>
+
+        <div>
+            <h3>House Construction Cost</h3>
+            <small>Estimate total building cost</small>
+        </div>
+
+    </div>
+
+    <span class="card-number">01</span>
+
+</div>
+
+
+<div class="card-body">
+
+    <div class="field">
+
+        <label>Built-up Area</label>
+
+        <div class="input-row">
+
+            <input
+                id="houseArea"
+                type="number"
+                min="1"
+                placeholder="Example: 1200"
+            >
+
+            <select id="houseAreaUnit">
+                <option value="sqft">Sq.ft</option>
+                <option value="sqm">m²</option>
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <div class="field">
+
+        <label>Number of Floors</label>
+
+        <select id="houseFloors">
+
+            <option value="1">Ground Floor</option>
+            <option value="2">G+1</option>
+            <option value="3">G+2</option>
+            <option value="4">G+3</option>
+            <option value="5">G+4</option>
+
+        </select>
+
+    </div>
+
+
+    <div class="field">
+
+        <label>Construction Quality</label>
+
+        <select id="houseQuality">
+
+            <option value="1400">
+                Basic – ₹1,400/sq.ft
+            </option>
+
+            <option value="1900" selected>
+                Standard – ₹1,900/sq.ft
+            </option>
+
+            <option value="2500">
+                Premium – ₹2,500/sq.ft
+            </option>
+
+            <option value="3200">
+                Luxury – ₹3,200/sq.ft
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="field">
+
+        <label>Optional Add-ons</label>
+
+        <div class="btn-row">
+
+            <button
+                class="btn gray"
+                id="basementBtn"
+                onclick="toggleOption('basement')"
+            >
+                + Basement
+            </button>
+
+            <button
+                class="btn gray"
+                id="compoundBtn"
+                onclick="toggleOption('compound')"
+            >
+                + Compound Wall
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="btn"
+        onclick="calculateHouseCost()"
+    >
+        Calculate House Cost
+    </button>
+
+
+    <div
+        id="houseResult"
+        class="result"
+    ></div>
+
+</div>
+
+</article>
+
+
+<!-- ==================================================
+     02 CEMENT
+================================================== -->
+
+<article
+class="card"
+data-category="material"
+data-name="cement cement bags concrete cement calculator"
+>
+
+<div class="card-head">
+
+<div class="card-title">
+
+<div class="card-icon">🪣</div>
+
+<div>
+<h3>Cement Calculator</h3>
+<small>Estimate cement bags</small>
+</div>
+
+</div>
+
+<span class="card-number">02</span>
+
+</div>
+
+
+<div class="card-body">
+
+<div class="field">
+
+<label>Concrete Volume</label>
+
+<div class="input-row">
+
+<input id="cementVolume" type="number" min="0">
+
+<select id="cementUnit">
+<option value="cft">Cubic Feet</option>
+<option value="m3">Cubic Metre</option>
+</select>
+
+</div>
+
+</div>
+
+
+<div class="field">
+
+<label>Concrete Mix</label>
+
+<select id="cementMix">
+
+<option value="5">M10 – 1:3:6</option>
+<option value="4">M15 – 1:2:4</option>
+<option value="5.5" selected>M20 – 1:1.5:3</option>
+<option value="4">M25 – Approx. 1:1:2</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>Wastage</label>
+
+<select id="cementWaste">
+<option value="0">0%</option>
+<option value="5" selected>5%</option>
+<option value="10">10%</option>
+</select>
+
+</div>
+
+
+<button class="btn" onclick="calculateCement()">
+Calculate Cement
+</button>
+
+<div id="cementResult" class="result"></div>
+
+</div>
+</article>
+
+
+<!-- ==================================================
+     03 CONCRETE
+================================================== -->
+
+<article
+class="card"
+data-category="material"
+data-name="concrete rcc pcc slab footing column concrete calculator"
+>
+
+<div class="card-head">
+
+<div class="card-title">
+
+<div class="card-icon">🚚</div>
+
+<div>
+<h3>Concrete Calculator</h3>
+<small>RCC / PCC volume</small>
+</div>
+
+</div>
+
+<span class="card-number">03</span>
+
+</div>
+
+
+<div class="card-body">
+
+<div class="field">
+<label>Length (ft)</label>
+<input id="conLength" type="number" min="0">
+</div>
+
+<div class="field">
+<label>Width (ft)</label>
+<input id="conWidth" type="number" min="0">
+</div>
+
+<div class="field">
+
+<label>Depth / Thickness</label>
+
+<div class="input-row">
+
+<input id="conDepth" type="number" min="0">
+
+<select id="conDepthUnit">
+<option value="in">Inches</option>
+<option value="ft">Feet</option>
+</select>
+
+</div>
+
+</div>
+
+
+<div class="field">
+
+<label>Wastage</label>
+
+<select id="conWaste">
+<option value="0">0%</option>
+<option value="5" selected>5%</option>
+<option value="10">10%</option>
+</select>
+
+</div>
+
+
+<button class="btn" onclick="calculateConcrete()">
+Calculate Concrete
+</button>
+
+<div id="conResult" class="result"></div>
+
+</div>
+</article>
+
+
+<!-- ==================================================
+     04 BRICK
+================================================== -->
+
+<article
+class="card"
+data-category="material"
+data-name="brick brickwork wall brick calculator mortar"
+>
+
+<div class="card-head">
+
+<div class="card-title">
+
+<div class="card-icon">🧱</div>
+
+<div>
+<h3>Brick Calculator</h3>
+<small>Bricks + mortar estimate</small>
+</div>
+
+</div>
+
+<span class="card-number">04</span>
+
+</div>
+
+
+<div class="card-body">
+
+<div class="field">
+<label>Wall Length (ft)</label>
+<input id="brickLength" type="number" min="0">
+</div>
+
+<div class="field">
+<label>Wall Height (ft)</label>
+<input id="brickHeight" type="number" min="0">
+</div>
+
+<div class="field">
+
+<label>Wall Thickness</label>
+
+<select id="brickThickness">
+
+<option value="4.5">4.5 inch</option>
+<option value="9" selected>9 inch</option>
+<option value="13.5">13.5 inch</option>
+
+</select>
+
+</div>
+
+<div class="field">
+
+<label>Wastage</label>
+
+<select id="brickWaste">
+<option value="3">3%</option>
+<option value="5" selected>5%</option>
+<option value="10">10%</option>
+</select>
+
+</div>
+
+
+<button class="btn" onclick="calculateBricks()">
+Calculate Bricks
+</button>
+
+<div id="brickResult" class="result"></div>
+
+</div>
+</article>
+
+
+<!-- ==================================================
+     05 SAND
+================================================== -->
+
+<article
+class="card"
+data-category="material"
+data-name="sand m sand balu construction sand calculator"
+>
+
+<div class="card-head">
+
+<div class="card-title">
+
+<div class="card-icon">🏖️</div>
+
+<div>
+<h3>Sand Calculator</h3>
+<small>Sand quantity estimate</small>
+</div>
+
+</div>
+
+<span class="card-number">05</span>
+
+</div>
+
+
+<div class="card-body">
+
+<div class="field">
+<label>Volume</label>
+<input id="sandVolume" type="number" min="0">
+</div>
+
+<div class="field">
+
+<label>Work Type</label>
+
+<select id="sandType">
+
+<option value="1.5">
+Concrete – Fine Aggregate Ratio
+</option>
+
+<option value="1">
+Brickwork
+</option>
+
+<option value="0.5">
+Plaster
+</option>
+
+</select>
+
+</div>
+
+<div class="field">
+
+<label>Unit</label>
+
+<select id="sandUnit">
+<option value="cft">Cubic Feet</option>
+<option value="m3">Cubic Metre</option>
+</select>
+
+</div>
+
+
+<button class="btn" onclick="calculateSand()">
+Calculate Sand
+</button>
+
+<div id="sandResult" class="result"></div>
+
+</div>
+</article>
+
+
+<!-- ==================================================
+     06 STEEL
+================================================== -->
+
+<article
+class="card"
+data-category="material"
+data-name="steel tmt sariya rebar steel calculator"
+>
+
+<div class="card-head">
+
+<div class="card-title">
+
+<div class="card-icon">⚙️</div>
+
+<div>
+<h3>Steel / TMT Calculator</h3>
+<small>Approx. steel requirement</small>
+</div>
+
+</div>
+
+<span class="card-number">06</span>
+
+</div>
+
+
+<div class="card-body">
+
+<div class="field">
+
+<label>Built-up Area</label>
+
+<div class="input-row">
+
+<input id="steelArea" type="number" min="0">
+
+<select id="steelUnit">
+<option value="sqft">Sq.ft</option>
+<option value="sqm">m²</option>
+</select>
+
+</div>
+
+</div>
+
+
+<div class="field">
+
+<label>Steel Consumption</label>
+
+<select id="steelRate">
+
+<option value="3.8">
+3.8 kg / sq.ft
+</option>
+
+<option value="4">
+4 kg / sq.ft
+</option>
+
+<option value="4.5">
+4.5 kg / sq.ft
+</option>
+
+<option value="5">
+5 kg / sq.ft
+</option>
+
+</select>
+
+</div>
+
+
+<button class="btn" onclick="calculateSteel()">
+Calculate Steel
+</button>
+
+<div id="steelResult" class="result"></div>
+
+</div>
+</article>
+
+
+<!-- ==================================================
+     07 BLOCK
+================================================== -->
+
+<article
+class="card"
+data-category="material"
+data-name="concrete block blockwork fly ash block calculator"
+>
+
+<div class="card-head">
+
+<div class="card-title">
+
+<div class="card-icon">⬛</div>
+
+<div>
+<h3>Block Calculator</h3>
+<small>Concrete / AAC blocks</small>
+</div>
+
+</div>
+
+<span class="card-number">07</span>
+
+</div>
+
+
+<div class="card-body">
+
+<div class="field">
+<label>Wall Length (ft)</label>
+<input id="blockLength" type="number" min="0">
+</div>
+
+<div class="field">
+<label>Wall Height (ft)</label>
+<input id="blockHeight" type="number" min="0">
+</div>
+
+<div class="field">
+
+<label>Block Size</label>
+
+<select id="blockSize">
+
+<option value="6.25">
+600 × 200 mm ≈ 6.25 blocks/m²
+</option>
+
+<option value="7.75">
+625 × 200 mm ≈ 7.75 blocks/m²
+</option>
+
+<option value="8">
+600 × 200 mm – estimate
+</option>
+
+</select>
+
+</div>
+
+
+<button class="btn" onclick="calculateBlocks()">
+Calculate Blocks
+</button>
+
+<div id="blockResult" class="result"></div>
+
+</div>
+</article>
+
+
+<!-- ==================================================
+     08 PLASTER
+================================================== -->
+
+<article
+class="card"
+data-category="finishing"
+data-name="plaster cement sand wall plaster calculator"
+>
+
+<div class="card-head">
+
+<div class="card-title">
+
+<div class="card-icon">🧱</div>
+
+<div>
+<h3>Plaster Calculator</h3>
+<small>Cement + sand for plaster</small>
+</div>
+
+</div>
+
+<span class="card-number">08</span>
+
+</div>
+
+
+<div class="card-body">
+
+<div class="field">
+<label>Wall Area (sq.ft)</label>
+<input id="plasterArea" type="number" min="0">
+</div>
+
+<div class="field">
+
+<label>Plaster Thickness</label>
+
+<select id="plasterThickness">
+<option value="0.5">6 mm</option>
+<option value="0.75" selected>12 mm</option>
+<option value="1">15 mm</option>
+<option value="1.5">20 mm</option>
+</select>
+
+</div>
+
+<div class="field">
+
+<label>Cement : Sand Ratio</label>
+
+<select id="plasterRatio">
+<option value="4">1 : 4</option>
+<option value="5" selected>1 : 5</option>
+<option value="6">1 : 6</option>
+</select>
+
+</div>
+
+
+<button class="btn" onclick="calculatePlaster()">
+Calculate Plaster
+</button>
+
+<div id="plasterResult" class="result"></div>
+
+</div>
+</article>
+
+
+<!-- ==================================================
+     09 PAINT
+================================================== -->
+
+<article
+class="card"
+data-category="finishing"
+data-name="paint wall paint primer putty paint calculator"
+>
+
+<div class="card-head">
+
+<div class="card-title">
+
+<div class="card-icon">🎨</div>
+
+<div>
+<h3>Paint Calculator</h3>
+<small>Paint + primer estimate</small>
+</div>
+
+</div>
+
+<span class="card-number">09</span>
+
+</div>
+
+
+<div class="card-body">
+
+<div class="field">
+<label>Paintable Area (sq.ft)</label>
+<input id="paintArea" type="number" min="0">
+</div>
+
+<div class="field">
+
+<label>Number of Coats</label>
+
+<select id="paintCoats">
+<option value="1">1 Coat</option>
+<option value="2" selected>2 Coats</option>
+<option value="3">3 Coats</option>
+</select>
+
+</div>
+
+<div class="field">
+
+<label>Coverage per Litre</label>
+
+<select id="paintCoverage">
+<option value="100">100 sq.ft/L</option>
+<option value="120" selected>120 sq.ft/L</option>
+<option value="140">140 sq.ft/L</option>
+</select>
+
+</div>
+
+<div class="field">
+
+<label>Primer Coverage</label>
+
+<select id="primerCoverage">
+<option value="100" selected>100 sq.ft/L</option>
+<option value="120">120 sq.ft/L</option>
+</select>
+
+</div>
+
+
+<button class="btn" onclick="calculatePaint()">
+Calculate Paint
+</button>
+
+<div id="paintResult" class="result"></div>
+
+</div>
+</article>
+
+
+<!-- ==================================================
+     10 TILE
+================================================== -->
+
+<article
+class="card"
+data-category="finishing"
+data-name="tile flooring tiles floor tile calculator"
+>
+
+<div class="card-head">
+
+<div class="card-title">
+
+<div class="card-icon">▦</div>
+
+<div>
+<h3>Tile Calculator</h3>
+<small>Tiles + wastage</small>
+</div>
+
+</div>
+
+<span class="card-number">10</span>
+
+</div>
+
+
+<div class="card-body">
+
+<div class="field">
+<label>Floor Length (ft)</label>
+<input id="tileLength" type="number" min="0">
+</div>
+
+<div class="field">
+<label>Floor Width (ft)</label>
+<input id="tileWidth" type="number" min="0">
+</div>
+
+<div class="field">
+
+<label>Tile Size</label>
+
+<select id="tileSize">
+
+<option value="1">
+1 × 1 ft
+</option>
+
+<option value="1.7778">
+1.333 × 1.333 ft
+</option>
+
+<option value="2.25" selected>
+1.5 × 1.5 ft
+</option>
+
+<option value="4">
+2 × 2 ft
+</option>
+
+</select>
+
+</div>
+
+<div class="field">
+
+<label>Wastage</label>
+
+<select id="tileWaste">
+<option value="5">5%</option>
+<option value="10" selected>10%</option>
+<option value="15">15%</option>
+</select>
+
+</div>
+
+
+<button class="btn" onclick="calculateTiles()">
+Calculate Tiles
+</button>
+
+<div id="tileResult" class="result"></div>
+
+</div>
+</article>
+
+
+<!-- ==================================================
+     11 FLOORING
+================================================== -->
+
+<article
+class="card"
+data-category="finishing"
+data-name="flooring marble granite laminate carpet flooring calculator"
+>
+
+<div class="card-head">
+
+<div class="card-title">
+
+<div class="card-icon">🏠</div>
+
+<div>
+<h3>Flooring Calculator</h3>
+<small>Area + material wastage</small>
+</div>
+
+</div>
+
+<span class="card-number">11</span>
+
+</div>
+
+
+<div class="card-body">
+
+<div class="field">
+<label>Area Length (ft)</label>
+<input id="floorLength" type="number" min="0">
+</div>
+
+<div class="field">
+<label>Area Width (ft)</label>
+<input id="floorWidth" type="number" min="0">
+</div>
+
+<div class="field">
+
+<label>Wastage</label>
+
+<select id="floorWaste">
+<option value="5">5%</option>
+<option value="10" selected>10%</option>
+<option value="15">15%</option>
+</select>
+
+</div>
+
+
+<button class="btn" onclick="calculateFlooring()">
+Calculate Flooring
+</button>
+
+<div id="floorResult" class="result"></div>
+
+</div>
+</article>
+
+
+<!-- ==================================================
+     12 AREA
+================================================== -->
+
+<article
+class="card"
+data-category="measurement"
+data-name="area plot land room square rectangle area calculator"
+>
+
+<div class="card-head">
+
+<div class="card-title">
+
+<div class="card-icon">📐</div>
+
+<div>
+<h3>Area Calculator</h3>
+<small>Plot / room / floor area</small>
+</div>
+
+</div>
+
+<span class="card-number">12</span>
+
+</div>
+
+
+<div class="card-body">
+
+<div class="field">
+<label>Length</label>
+<input id="areaLength" type="number" min="0">
+</div>
+
+<div class="field">
+<label>Width</label>
+<input id="areaWidth" type="number" min="0">
+</div>
+
+<div class="field">
+
+<label>Unit</label>
+
+<select id="areaUnit">
+<option value="ft">Feet</option>
+<option value="m">Metre</option>
+</select>
+
+</div>
+
+
+<button class="btn" onclick="calculateArea()">
+Calculate Area
+</button>
+
+<div id="areaResult" class="result"></div>
+
+</div>
+</article>
+
+
+<!-- ==================================================
+     13 VOLUME
+================================================== -->
+
+<article
+class="card"
+data-category="measurement"
+data-name="volume cubic feet cubic meter tank volume volume calculator"
+>
+
+<div class="card-head">
+
+<div class="card-title">
+
+<div class="card-icon">📦</div>
+
+<div>
+<h3>Volume Calculator</h3>
+<small>Cubic volume</small>
+</div>
+
+</div>
+
+<span class="card-number">13</span>
+
+</div>
+
+
+<div class="card-body">
+
+<div class="field">
+<label>Length</label>
+<input id="volLength" type="number" min="0">
+</div>
+
+<div class="field">
+<label>Width</label>
+<input id="volWidth" type="number" min="0">
+</div>
+
+<div class="field">
+<label>Height</label>
+<input id="volHeight" type="number" min="0">
+</div>
+
+<div class="field">
+
+<label>Unit</label>
+
+<select id="volUnit">
+<option value="ft">Feet</option>
+<option value="m">Metre</option>
+</select>
+
+</div>
+
+
+<button class="btn" onclick="calculateVolume()">
+Calculate Volume
+</button>
+
+<div id="volResult" class="result"></div>
+
+</div>
+</article>
+
+
+<!-- ==================================================
+     14 WATER TANK
+================================================== -->
+
+<article
+class="card"
+data-category="utility"
+data-name="water tank tank capacity water storage tank calculator"
+>
+
+<div class="card-head">
+
+<div class="card-title">
+
+<div class="card-icon">💧</div>
+
+<div>
+<h3>Water Tank Calculator</h3>
+<small>Tank capacity in litres</small>
+</div>
+
+</div>
+
+<span class="card-number">14</span>
+
+</div>
+
+
+<div class="card-body">
+
+<div class="field">
+
+<label>Tank Type</label>
+
+<select id="tankType" onchange="changeTankFields()">
+
+<option value="rectangular">
+Rectangular Tank
+</option>
+
+<option value="cylinder">
+Cylindrical Tank
+</option>
+
+</select>
+
+</div>
+
+
+<div id="rectTank">
+
+<div class="field">
+<label>Length (ft)</label>
+<input id="tankLength" type="number" min="0">
+</div>
+
+<div class="field">
+<label>Width (ft)</label>
+<input id="tankWidth" type="number" min="0">
+</div>
+
+<div class="field">
+<label>Height (ft)</label>
+<input id="tankHeight" type="number" min="0">
+</div>
+
+</div>
+
+
+<div id="cylTank" style="display:none">
+
+<div class="field">
+<label>Diameter (ft)</label>
+<input id="tankDiameter" type="number" min="0">
+</div>
+
+<div class="field">
+<label>Height (ft)</label>
+<input id="tankCylHeight" type="number" min="0">
+</div>
+
+</div>
+
+
+<button class="btn" onclick="calculateTank()">
+Calculate Capacity
+</button>
+
+<div id="tankResult" class="result"></div>
+
+</div>
+</article>
+
+
+<!-- ==================================================
+     15 UNIT CONVERTER
+================================================== -->
+
+<article
+class="card"
+data-category="utility"
+data-name="unit converter feet meter square feet cubic feet conversion"
+>
+
+<div class="card-head">
+
+<div class="card-title">
+
+<div class="card-icon">🔄</div>
+
+<div>
+<h3>Construction Unit Converter</h3>
+<small>Length / area / volume</small>
+</div>
+
+</div>
+
+<span class="card-number">15</span>
+
+</div>
+
+
+<div class="card-body">
+
+<div class="field">
+
+<label>Conversion</label>
+
+<select id="convertType">
+
+<option value="ftm">
+Feet → Metre
+</option>
+
+<option value="mft">
+Metre → Feet
+</option>
+
+<option value="sqftsqm">
+Sq.ft → m²
+</option>
+
+<option value="sqmsqft">
+m² → Sq.ft
+</option>
+
+<option value="cftm3">
+Cubic ft → m³
+</option>
+
+<option value="m3cft">
+m³ → Cubic ft
+</option>
+
+<option value="inft">
+Inches → Feet
+</option>
+
+<option value="ftin">
+Feet → Inches
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+<label>Value</label>
+<input id="convertValue" type="number">
+</div>
+
+
+<button class="btn" onclick="convertUnits()">
+Convert
+</button>
+
+<div id="convertResult" class="result"></div>
+
+</div>
+</article>
+
+
+</div>
+</section>
+
+
+<!-- ==================================================
+     FEATURES
+================================================== -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>Everything You Need for Construction Planning</h2>
+
+<p>
+Simple calculators for homeowners, contractors,
+builders, students and site workers.
+</p>
+
+</div>
+
+
+<div class="feature-grid">
+
+<div class="feature">
+<div class="feature-icon">💰</div>
+<h3>Cost Estimation</h3>
+<p>
+Estimate house construction cost using your own
+area and rate assumptions.
+</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🧱</div>
+<h3>Material Quantity</h3>
+<p>
+Calculate approximate cement, sand, bricks,
+steel and concrete quantities.
+</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🎨</div>
+<h3>Finishing Work</h3>
+<p>
+Estimate paint, primer, plaster, tiles and
+flooring requirements.
+</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">📐</div>
+<h3>Measurement Tools</h3>
+<p>
+Convert and calculate common construction
+length, area and volume measurements.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ==================================================
+     SEO GUIDE
+================================================== -->
+
+<section class="section">
+
+<div class="guide">
+
+<h2>
+Construction Calculator India – Complete Guide
+</h2>
+
+<p>
+BuildCalc India is a collection of simple construction
+estimation tools designed around common home-building
+and renovation calculations.
+</p>
+
+<h3>House Construction Cost Calculator</h3>
+
+<p>
+Enter your built-up area, number of floors and an
+assumed construction rate per square foot to get an
+indicative project cost. Material prices and labour
+rates vary by city, specification and project.
+</p>
+
+<h3>Cement, Sand and Concrete Calculation</h3>
+
+<p>
+Concrete quantity depends on length, width and thickness.
+For material planning, users should verify the selected
+mix design and project specifications before purchasing
+materials.
+</p>
+
+<h3>Brick and Block Calculator</h3>
+
+<p>
+Brick and block quantity depends on wall dimensions,
+unit size, mortar joints and wastage. This calculator
+provides an estimate rather than a project-specific BOQ.
+</p>
+
+<h3>Paint and Plaster Calculator</h3>
+
+<p>
+Paint quantity depends on surface area, number of coats,
+coverage and surface condition. Plaster quantity depends
+on thickness and the selected cement-sand ratio.
+</p>
+
+<h3>Tile and Flooring Calculator</h3>
+
+<p>
+Tile requirements are calculated from floor area and tile
+size with a selectable wastage percentage. Cutting pattern,
+room shape and installation method can change the actual
+requirement.
+</p>
+
+<h3>Common Construction Searches</h3>
+
+<ul>
+<li>house construction cost calculator</li>
+<li>cement calculator</li>
+<li>concrete calculator</li>
+<li>brick calculator</li>
+<li>sand calculator</li>
+<li>steel / TMT calculator</li>
+<li>paint calculator</li>
+<li>tile calculator</li>
+<li>plaster calculator</li>
+<li>flooring calculator</li>
+<li>water tank capacity calculator</li>
+<li>area calculator</li>
+<li>volume calculator</li>
+<li>construction unit converter</li>
+</ul>
+
+</div>
+
+</section>
+
+
+<!-- ==================================================
+     FAQ
+================================================== -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>Frequently Asked Questions</h2>
+
+<p>Important information before using construction estimates.</p>
+
+</div>
+
+
+<div class="faq-wrap">
+
+
+<div class="faq">
+
+<div
+class="faq-question"
+onclick="toggleFAQ(this)"
+>
+
+<span>
+Is BuildCalc India's construction estimate exact?
+</span>
+
+<span class="faq-arrow">▼</span>
+
+</div>
+
+<div class="faq-answer">
+
+No. Construction quantities and costs are estimates.
+Actual quantities depend on structural design,
+material specifications, local prices, workmanship,
+site conditions and wastage.
+
+</div>
+
+</div>
+
+
+<div class="faq">
+
+<div
+class="faq-question"
+onclick="toggleFAQ(this)"
+>
+
+<span>
+Can I use my local material rates?
+</span>
+
+<span class="faq-arrow">▼</span>
+
+</div>
+
+<div class="faq-answer">
+
+Yes. For cost planning, always use the latest quotation
+from your local supplier or contractor instead of relying
+on a generic national rate.
+
+</div>
+
+</div>
+
+
+<div class="faq">
+
+<div
+class="faq-question"
+onclick="toggleFAQ(this)"
+>
+
+<span>
+Does the calculator work on mobile?
+</span>
+
+<span class="faq-arrow">▼</span>
+
+</div>
+
+<div class="faq-answer">
+
+Yes. The website is designed to work on mobile phones,
+tablets and desktop computers.
+
+</div>
+
+</div>
+
+
+<div class="faq">
+
+<div
+class="faq-question"
+onclick="toggleFAQ(this)"
+>
+
+<span>
+Does BuildCalc India save my measurements?
+</span>
+
+<span class="faq-arrow">▼</span>
+
+</div>
+
+<div class="faq-answer">
+
+No server or database is required for these calculations.
+The calculations run directly in your browser.
+
+</div>
+
+</div>
+
+
+<div class="faq">
+
+<div
+class="faq-question"
+onclick="toggleFAQ(this)"
+>
+
+<span>
+Should I order construction material using these results?
+</span>
+
+<span class="faq-arrow">▼</span>
+
+</div>
+
+<div class="faq-answer">
+
+For actual construction ordering, verify quantities with
+your architect, structural engineer, quantity surveyor or
+experienced contractor and the project's drawings/BOQ.
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ==================================================
+     DISCLAIMER
+================================================== -->
+
+<div class="disclaimer">
+
+<strong>⚠️ Important Construction Disclaimer</strong>
+
+BuildCalc India provides approximate planning estimates
+for educational and preliminary budgeting purposes.
+Results are not a substitute for structural drawings,
+engineered calculations, a project BOQ, supplier quotations
+or professional advice. Material prices, quantities,
+wastage and labour requirements can vary by location and
+project. Verify important construction decisions with a
+qualified professional.
+
+</div>
+
+</main>
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer>
+
+<h3>🏗️ BuildCalc India</h3>
+
+<p>
+Calculate. Plan. Build Smarter.
+</p>
+
+<div class="footer-links">
+
+<a href="#calculators">Calculators</a>
+<a href="#houseCost">House Cost</a>
+<a href="#">Privacy Policy</a>
+<a href="#">Terms</a>
+<a href="#">Contact</a>
+
+</div>
+
+<p style="margin-top:18px">
+© <span id="year"></span> BuildCalc India. All rights reserved.
+</p>
+
+</footer>
+
+
+<div id="toast" class="toast"></div>
+
+
+<script>
+
+/* ==================================================
+   GLOBAL
+================================================== */
+
+let options = {
+    basement:false,
+    compound:false
+};
+
+const $ = id => document.getElementById(id);
+
+function num(id){
+
+    const n = parseFloat($(id).value);
+
+    return Number.isFinite(n) ? n : 0;
+}
+
+function round(n,d=2){
+
+    return Number(n.toFixed(d));
+
+}
+
+function money(n){
+
+    return "₹" + Math.round(n).toLocaleString("en-IN");
+
+}
+
+function showResult(id,html){
+
+    const box=$(id);
+
+    box.innerHTML=html;
+
+    box.classList.add("show");
+
+}
+
+function error(message){
+
+    const toast=$("toast");
+
+    toast.textContent=message;
+
+    toast.classList.add("show");
+
+    setTimeout(()=>{
+        toast.classList.remove("show");
+    },2500);
+
+}
+
+
+/* ==================================================
+   HOUSE COST
+================================================== */
+
+function toggleOption(type){
+
+    options[type]=!options[type];
+
+    const id =
+        type==="basement"
+        ? "basementBtn"
+        : "compoundBtn";
+
+    $(id).style.background =
+        options[type]
+        ? "#fed7aa"
+        : "#f3f4f6";
+
+    $(id).style.color =
+        options[type]
+        ? "#9a3412"
+        : "#111827";
+
+}
+
+
+function calculateHouseCost(){
+
+    let area=num("houseArea");
+
+    if(area<=0){
+
+        error("Please enter your built-up area.");
+
+        return;
+    }
+
+    const unit=$("houseAreaUnit").value;
+
+    if(unit==="sqm"){
+
+        area*=10.7639;
+
+    }
+
+    const floors=num("houseFloors");
+
+    const rate=parseFloat($("houseQuality").value);
+
+    const totalArea=area*floors;
+
+    let baseCost=totalArea*rate;
+
+    let basementCost=0;
+
+    let compoundCost=0;
+
+    if(options.basement){
+
+        basementCost=area*800;
+
+    }
+
+    if(options.compound){
+
+        compoundCost=area*0.12*rate;
+
+    }
+
+    const subtotal=
+        baseCost+
+        basementCost+
+        compoundCost;
+
+    const contingency=subtotal*.05;
+
+    const total=subtotal+contingency;
+
+    const material=total*.60;
+
+    const labour=total*.30;
+
+    const overhead=total*.10;
+
+    showResult("houseResult",`
+
+        <div class="result-title">
+            Estimated Construction Cost
+        </div>
+
+        <div class="big-result">
+            ${money(total)}
+        </div>
+
+        <div class="house-summary">
+
+            <div class="summary-box">
+                <span>Total Area</span>
+                <strong>${round(totalArea)} sq.ft</strong>
+            </div>
+
+            <div class="summary-box">
+                <span>Rate</span>
+                <strong>${money(rate)}/sq.ft</strong>
+            </div>
+
+            <div class="summary-box">
+                <span>Materials</span>
+                <strong>${money(material)}</strong>
+            </div>
+
+            <div class="summary-box">
+                <span>Labour</span>
+                <strong>${money(labour)}</strong>
+            </div>
+
+        </div>
+
+        <div class="cost-breakdown">
+
+            <div class="cost-row head">
+                <span>Component</span>
+                <span>Share</span>
+                <span>Estimate</span>
+            </div>
+
+            <div class="cost-row">
+                <span>Materials</span>
+                <span>60%</span>
+                <strong>${money(material)}</strong>
+            </div>
+
+            <div class="cost-row">
+                <span>Labour</span>
+                <span>30%</span>
+                <strong>${money(labour)}</strong>
+            </div>
+
+            <div class="cost-row">
+                <span>Overhead & Finishing</span>
+                <span>10%</span>
+                <strong>${money(overhead)}</strong>
+            </div>
+
+            <div class="cost-row">
+                <span>Contingency</span>
+                <span>5%</span>
+                <strong>${money(contingency)}</strong>
+            </div>
+
+        </div>
+
+        <div class="note">
+            Planning estimate only. Enter your local contractor
+            or supplier rates for a more useful budget.
+        </div>
+
+    `);
+
+}
+
+
+/* ==================================================
+   CEMENT
+================================================== */
+
+function calculateCement(){
+
+    let volume=num("cementVolume");
+
+    if(volume<=0){
+
+        error("Enter concrete volume.");
+
+        return;
+    }
+
+    if($("cementUnit").value==="cft"){
+
+        volume*=0.0283168;
+
+    }
+
+    const ratio=parseFloat($("cementMix").value);
+
+    const waste=num("cementWaste");
+
+    const dry=volume*1.54;
+
+    const totalParts=1+ratio;
+
+    const cementM3=
+        (1/totalParts)*dry;
+
+    const cementKg=
+        cementM3*1440;
+
+    const finalKg=
+        cementKg*(1+waste/100);
+
+    const bags=Math.ceil(finalKg/50);
+
+    showResult("cementResult",`
+
+        <div class="result-title">
+            Cement Required
+        </div>
+
+        <div class="big-result">
+            ${bags} Bags
+        </div>
+
+        <div class="result-table">
+
+            <div class="result-line">
+                <span>Wet Volume</span>
+                <strong>${round(volume)} m³</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Dry Volume</span>
+                <strong>${round(dry)} m³</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Approx. Cement</span>
+                <strong>${round(finalKg)} kg</strong>
+            </div>
+
+        </div>
+
+    `);
+
+}
+
+
+/* ==================================================
+   CONCRETE
+================================================== */
+
+function calculateConcrete(){
+
+    const l=num("conLength");
+    const w=num("conWidth");
+    const d=num("conDepth");
+
+    if(l<=0||w<=0||d<=0){
+
+        error("Enter all concrete dimensions.");
+
+        return;
+    }
+
+    let depthFt=d;
+
+    if($("conDepthUnit").value==="in"){
+
+        depthFt=d/12;
+
+    }
+
+    const wet=l*w*depthFt;
+
+    const waste=num("conWaste");
+
+    const final=wet*(1+waste/100);
+
+    const m3=final*.0283168;
+
+    showResult("conResult",`
+
+        <div class="result-title">
+            Concrete Volume
+        </div>
+
+        <div class="big-result">
+            ${round(final)} ft³
+        </div>
+
+        <div class="result-table">
+
+            <div class="result-line">
+                <span>Cubic Metres</span>
+                <strong>${round(m3)} m³</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Wastage</span>
+                <strong>${num("conWaste")}%</strong>
+            </div>
+
+        </div>
+
+    `);
+
+}
+
+
+/* ==================================================
+   BRICKS
+================================================== */
+
+function calculateBricks(){
+
+    const l=num("brickLength");
+    const h=num("brickHeight");
+
+    if(l<=0||h<=0){
+
+        error("Enter wall length and height.");
+
+        return;
+    }
+
+    const thicknessIn=
+        num("brickThickness");
+
+    const volume=
+        l*h*(thicknessIn/12);
+
+    /*
+       Approximate planning factor.
+       Actual brick count depends on brick size
+       and mortar joint.
+    */
+
+    const bricksPerCft=14.2;
+
+    const base=volume*bricksPerCft;
+
+    const waste=num("brickWaste");
+
+    const final=Math.ceil(
+        base*(1+waste/100)
+    );
+
+    showResult("brickResult",`
+
+        <div class="result-title">
+            Estimated Bricks
+        </div>
+
+        <div class="big-result">
+            ${final.toLocaleString("en-IN")} Bricks
+        </div>
+
+        <div class="result-table">
+
+            <div class="result-line">
+                <span>Wall Volume</span>
+                <strong>${round(volume)} ft³</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Wastage</span>
+                <strong>${waste}%</strong>
+            </div>
+
+        </div>
+
+        <div class="note">
+            Actual quantity depends on brick dimensions
+            and mortar joint.
+        </div>
+
+    `);
+
+}
+
+
+/* ==================================================
+   SAND
+================================================== */
+
+function calculateSand(){
+
+    let volume=num("sandVolume");
+
+    if(volume<=0){
+
+        error("Enter volume.");
+
+        return;
+    }
+
+    if($("sandUnit").value==="m3"){
+
+        volume*=35.3147;
+
+    }
+
+    const factor=
+        parseFloat($("sandType").value);
+
+    const result=volume*factor;
+
+    showResult("sandResult",`
+
+        <div class="result-title">
+            Estimated Sand
+        </div>
+
+        <div class="big-result">
+            ${round(result)} ft³
+        </div>
+
+        <div class="result-table">
+
+            <div class="result-line">
+                <span>Approx. m³</span>
+                <strong>${round(result*.0283168)} m³</strong>
+            </div>
+
+        </div>
+
+        <div class="note">
+            Ratio is a planning assumption and should be
+            checked against the actual mix/design.
+        </div>
+
+    `);
+
+}
+
+
+/* ==================================================
+   STEEL
+================================================== */
+
+function calculateSteel(){
+
+    let area=num("steelArea");
+
+    if(area<=0){
+
+        error("Enter built-up area.");
+
+        return;
+    }
+
+    if($("steelUnit").value==="sqm"){
+
+        area*=10.7639;
+
+    }
+
+    const rate=
+        parseFloat($("steelRate").value);
+
+    const kg=area*rate;
+
+    showResult("steelResult",`
+
+        <div class="result-title">
+            Approx. Steel Requirement
+        </div>
+
+        <div class="big-result">
+            ${round(kg).toLocaleString("en-IN")} kg
+        </div>
+
+        <div class="result-table">
+
+            <div class="result-line">
+                <span>Metric Tonnes</span>
+                <strong>${round(kg/1000)} MT</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Assumed Rate</span>
+                <strong>${rate} kg/sq.ft</strong>
+            </div>
+
+        </div>
+
+        <div class="note">
+            Steel quantity must ultimately be taken from
+            structural drawings/BBS for actual construction.
+        </div>
+
+    `);
+
+}
+
+
+/* ==================================================
+   BLOCK
+================================================== */
+
+function calculateBlocks(){
+
+    const l=num("blockLength");
+    const h=num("blockHeight");
+
+    if(l<=0||h<=0){
+
+        error("Enter wall dimensions.");
+
+        return;
+    }
+
+    const areaFt=l*h;
+
+    const areaM2=areaFt*.092903;
+
+    const rate=parseFloat($("blockSize").value);
+
+    const blocks=Math.ceil(areaM2*rate);
+
+    showResult("blockResult",`
+
+        <div class="result-title">
+            Estimated Blocks
+        </div>
+
+        <div class="big-result">
+            ${blocks.toLocaleString("en-IN")} Blocks
+        </div>
+
+        <div class="result-table">
+
+            <div class="result-line">
+                <span>Wall Area</span>
+                <strong>${round(areaFt)} sq.ft</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Wall Area</span>
+                <strong>${round(areaM2)} m²</strong>
+            </div>
+
+        </div>
+
+    `);
+
+}
+
+
+/* ==================================================
+   PLASTER
+================================================== */
+
+function calculatePlaster(){
+
+    const area=num("plasterArea");
+    const thicknessMm=
+        parseFloat($("plasterThickness").value);
+
+    const ratio=
+        parseFloat($("plasterRatio").value);
+
+    if(area<=0){
+
+        error("Enter plaster area.");
+
+        return;
+    }
+
+    const thicknessM=
+        thicknessMm/1000;
+
+    const wetVolume=
+        area*.092903*thicknessM;
+
+    const dryVolume=
+        wetVolume*1.27;
+
+    const cementVolume=
+        dryVolume/(1+ratio);
+
+    const cementKg=
+        cementVolume*1440;
+
+    const bags=Math.ceil(cementKg/50);
+
+    const sandVolume=
+        dryVolume-cementVolume;
+
+    showResult("plasterResult",`
+
+        <div class="result-title">
+            Plaster Material Estimate
+        </div>
+
+        <div class="big-result">
+            ${bags} Cement Bags
+        </div>
+
+        <div class="result-table">
+
+            <div class="result-line">
+                <span>Cement</span>
+                <strong>${round(cementKg)} kg</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Sand</span>
+                <strong>${round(sandVolume*35.3147)} ft³</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Plaster Area</span>
+                <strong>${round(area)} sq.ft</strong>
+            </div>
+
+        </div>
+
+    `);
+
+}
+
+
+/* ==================================================
+   PAINT
+================================================== */
+
+function calculatePaint(){
+
+    const area=num("paintArea");
+
+    if(area<=0){
+
+        error("Enter paintable area.");
+
+        return;
+    }
+
+    const coats=num("paintCoats");
+
+    const coverage=num("paintCoverage");
+
+    const primerCoverage=
+        num("primerCoverage");
+
+    const paint=
+        (area*coats)/coverage;
+
+    const primer=
+        area/primerCoverage;
+
+    showResult("paintResult",`
+
+        <div class="result-title">
+            Paint Estimate
+        </div>
+
+        <div class="big-result">
+            ${round(paint,1)} Litres Paint
+        </div>
+
+        <div class="result-table">
+
+            <div class="result-line">
+                <span>Primer</span>
+                <strong>${round(primer,1)} L</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Coats</span>
+                <strong>${coats}</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Area</span>
+                <strong>${round(area)} sq.ft</strong>
+            </div>
+
+        </div>
+
+    `);
+
+}
+
+
+/* ==================================================
+   TILE
+================================================== */
+
+function calculateTiles(){
+
+    const l=num("tileLength");
+    const w=num("tileWidth");
+
+    if(l<=0||w<=0){
+
+        error("Enter floor dimensions.");
+
+        return;
+    }
+
+    const area=l*w;
+
+    const tileArea=
+        parseFloat($("tileSize").value);
+
+    const waste=num("tileWaste");
+
+    const required=
+        area*(1+waste/100);
+
+    const tiles=
+        Math.ceil(required/tileArea);
+
+    showResult("tileResult",`
+
+        <div class="result-title">
+            Tiles Required
+        </div>
+
+        <div class="big-result">
+            ${tiles.toLocaleString("en-IN")} Tiles
+        </div>
+
+        <div class="result-table">
+
+            <div class="result-line">
+                <span>Floor Area</span>
+                <strong>${round(area)} sq.ft</strong>
+            </div>
+
+            <div class="result-line">
+                <span>With Wastage</span>
+                <strong>${round(required)} sq.ft</strong>
+            </div>
+
+        </div>
+
+    `);
+
+}
+
+
+/* ==================================================
+   FLOORING
+================================================== */
+
+function calculateFlooring(){
+
+    const l=num("floorLength");
+    const w=num("floorWidth");
+
+    if(l<=0||w<=0){
+
+        error("Enter floor dimensions.");
+
+        return;
+    }
+
+    const area=l*w;
+
+    const waste=num("floorWaste");
+
+    const material=
+        area*(1+waste/100);
+
+    showResult("floorResult",`
+
+        <div class="result-title">
+            Flooring Material
+        </div>
+
+        <div class="big-result">
+            ${round(material)} sq.ft
+        </div>
+
+        <div class="result-table">
+
+            <div class="result-line">
+                <span>Actual Area</span>
+                <strong>${round(area)} sq.ft</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Wastage</span>
+                <strong>${waste}%</strong>
+            </div>
+
+        </div>
+
+    `);
+
+}
+
+
+/* ==================================================
+   AREA
+================================================== */
+
+function calculateArea(){
+
+    const l=num("areaLength");
+    const w=num("areaWidth");
+
+    if(l<=0||w<=0){
+
+        error("Enter length and width.");
+
+        return;
+    }
+
+    let sqft;
+
+    if($("areaUnit").value==="ft"){
+
+        sqft=l*w;
+
+    }else{
+
+        sqft=l*w*10.7639;
+
+    }
+
+    const sqm=sqft*.092903;
+
+    const sqyard=sqft/9;
+
+    showResult("areaResult",`
+
+        <div class="result-title">
+            Area
+        </div>
+
+        <div class="big-result">
+            ${round(sqft)} sq.ft
+        </div>
+
+        <div class="result-table">
+
+            <div class="result-line">
+                <span>Square Metres</span>
+                <strong>${round(sqm)} m²</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Square Yards</span>
+                <strong>${round(sqyard)} yd²</strong>
+            </div>
+
+        </div>
+
+    `);
+
+}
+
+
+/* ==================================================
+   VOLUME
+================================================== */
+
+function calculateVolume(){
+
+    const l=num("volLength");
+    const w=num("volWidth");
+    const h=num("volHeight");
+
+    if(l<=0||w<=0||h<=0){
+
+        error("Enter all dimensions.");
+
+        return;
+    }
+
+    let cft=l*w*h;
+
+    if($("volUnit").value==="m"){
+
+        cft*=35.3147;
+
+    }
+
+    const m3=cft*.0283168;
+
+    showResult("volResult",`
+
+        <div class="result-title">
+            Volume
+        </div>
+
+        <div class="big-result">
+            ${round(cft)} ft³
+        </div>
+
+        <div class="result-table">
+
+            <div class="result-line">
+                <span>Cubic Metres</span>
+                <strong>${round(m3)} m³</strong>
+            </div>
+
+        </div>
+
+    `);
+
+}
+
+
+/* ==================================================
+   WATER TANK
+================================================== */
+
+function changeTankFields(){
+
+    const cylinder=
+        $("tankType").value==="cylinder";
+
+    $("rectTank").style.display=
+        cylinder ? "none" : "block";
+
+    $("cylTank").style.display=
+        cylinder ? "block" : "none";
+
+}
+
+
+function calculateTank(){
+
+    let volumeFt3;
+
+    if($("tankType").value==="rectangular"){
+
+        const l=num("tankLength");
+        const w=num("tankWidth");
+        const h=num("tankHeight");
+
+        if(l<=0||w<=0||h<=0){
+
+            error("Enter tank dimensions.");
+
+            return;
+        }
+
+        volumeFt3=l*w*h;
+
+    }else{
+
+        const d=num("tankDiameter");
+        const h=num("tankCylHeight");
+
+        if(d<=0||h<=0){
+
+            error("Enter cylinder dimensions.");
+
+            return;
+        }
+
+        const r=d/2;
+
+        volumeFt3=Math.PI*r*r*h;
+
+    }
+
+    const litres=
+        volumeFt3*28.3168;
+
+    showResult("tankResult",`
+
+        <div class="result-title">
+            Tank Capacity
+        </div>
+
+        <div class="big-result">
+            ${Math.round(litres).toLocaleString("en-IN")} Litres
+        </div>
+
+        <div class="result-table">
+
+            <div class="result-line">
+                <span>Cubic Feet</span>
+                <strong>${round(volumeFt3)} ft³</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Cubic Metres</span>
+                <strong>${round(volumeFt3*.0283168)} m³</strong>
+            </div>
+
+        </div>
+
+    `);
+
+}
+
+
+/* ==================================================
+   UNIT CONVERTER
+================================================== */
+
+function convertUnits(){
+
+    const value=num("convertValue");
+
+    if(value===0){
+
+        error("Enter a value.");
+
+        return;
+    }
+
+    const type=$("convertType").value;
+
+    let result;
+    let unit;
+
+    switch(type){
+
+        case "ftm":
+            result=value*.3048;
+            unit="m";
+            break;
+
+        case "mft":
+            result=value*3.28084;
+            unit="ft";
+            break;
+
+        case "sqftsqm":
+            result=value*.092903;
+            unit="m²";
+            break;
+
+        case "sqmsqft":
+            result=value*10.7639;
+            unit="sq.ft";
+            break;
+
+        case "cftm3":
+            result=value*.0283168;
+            unit="m³";
+            break;
+
+        case "m3cft":
+            result=value*35.3147;
+            unit="ft³";
+            break;
+
+        case "inft":
+            result=value/12;
+            unit="ft";
+            break;
+
+        case "ftin":
+            result=value*12;
+            unit="in";
+            break;
+
+    }
+
+    showResult("convertResult",`
+
+        <div class="result-title">
+            Converted Result
+        </div>
+
+        <div class="big-result">
+            ${round(result,4)} ${unit}
+        </div>
+
+    `);
+
+}
+
+
+/* ==================================================
+   SEARCH
+================================================== */
+
+function searchCalculators(){
+
+    const query=
+        $("calculatorSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+    document
+    .querySelectorAll(".card")
+    .forEach(card=>{
+
+        const name=
+            card.dataset.name
+            .toLowerCase();
+
+        card.classList.toggle(
+            "hidden",
+            !name.includes(query)
+        );
+
+    });
+
+}
+
+
+/* ==================================================
+   CATEGORY FILTER
+================================================== */
+
+function filterCategory(category,button){
+
+    document
+    .querySelectorAll(".category")
+    .forEach(btn=>{
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    document
+    .querySelectorAll(".card")
+    .forEach(card=>{
+
+        if(category==="all"){
+
+            card.classList.remove("hidden");
+
+            return;
+        }
+
+        const cardCategory=
+            card.dataset.category;
+
+        card.classList.toggle(
+            "hidden",
+            cardCategory!==category
+        );
+
+    });
+
+}
+
+
+/* ==================================================
+   FAQ
+================================================== */
+
+function toggleFAQ(element){
+
+    element
+    .parentElement
+    .classList
+    .toggle("active");
+
+}
+
+
+/* ==================================================
+   YEAR
+================================================== */
+
+$("year").textContent=
+new Date().getFullYear();
+
+
+/* ==================================================
+   INITIALIZATION
+================================================== */
+
+changeTankFields();
+
+</script>
+
+</body>
+</html>
